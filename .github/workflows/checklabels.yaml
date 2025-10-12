@@ -1,0 +1,21 @@
+name: Label Checker
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
+
+jobs:
+  check-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm install @actions/github @actions/core
+      - name: Run Label Checker
+        run: node .github/workflows/label-checker.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

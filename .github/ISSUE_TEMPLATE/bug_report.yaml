@@ -1,0 +1,75 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["Issue:bug"]
+assignees:
+  - <project_manager>
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Description
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "Describe the issue happened"
+    validations:
+      required: true
+  - type: textarea
+    id: error-message
+    attributes:
+      label: Error message
+      description: If applicable, please provide the error message you received.
+      placeholder: Copy and paste the error message here
+    validations:
+      required: false
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is the bug?
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Please provide detailed steps for reproducing the issue.
+      placeholder: Tell us how to reproduce the issue
+      value: "1. 2. 3."
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide details about your environment.
+      placeholder: Tell us about your environment
+      value: "OS: \nBrowser: \nVersion: \nLanguage:..."
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+      placeholder: Drag and drop your screenshots here
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](../Code_of_Conduct.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

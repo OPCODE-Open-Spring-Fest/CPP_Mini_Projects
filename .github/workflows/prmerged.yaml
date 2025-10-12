@@ -1,0 +1,32 @@
+name: On Pull Request Merge
+
+on:
+  pull_request_target:
+    types: [closed]
+
+jobs:
+
+  on-merge:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == true }}
+    steps:
+      - name: Get Pull Request Data
+        id: get-pr-data
+        env:
+          PULL_REQUEST_OWNER: ${{ github.event.pull_request.user.login }}
+          PULL_REQUEST_LABELS: ${{ join(github.event.pull_request.labels.*.name, ', ') }}
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+          REPOSITORY_URL: ${{ github.event.repository.html_url }}
+        run: |
+          echo "::set-output name=owner::$PULL_REQUEST_OWNER"
+          echo "::set-output name=labels::$PULL_REQUEST_LABELS"
+          echo "::set-output name=repo_name::$REPOSITORY_NAME"
+          echo "::set-output name=repo_url::$REPOSITORY_URL"
+
+      - name: Send Data to API
+        env:
+          API_URL: https://opcode.gymkhana.iiitbh.ac.in/api/prmerged
+          API_AUTH_TOKEN: ${{ secrets.API_AUTH_TOKEN }}
+        run: |
+          payload=$(echo '{"owner":"${{ steps.get-pr-data.outputs.owner }}","labels":"${{ steps.get-pr-data.outputs.labels }}","repository_name":"${{ steps.get-pr-data.outputs.repo_name }}","repository_url":"${{ steps.get-pr-data.outputs.repo_url }}"}')
+          curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $API_AUTH_TOKEN" -d "$payload" "$API_URL"
