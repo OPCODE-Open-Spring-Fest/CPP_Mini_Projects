@@ -24,3 +24,26 @@ The program is designed using **Object-Oriented Programming (OOP)** principles, 
   - Clear and readable code  
 
 ---
+
+## Build & Run
+
+Files added:
+- `Calculator.h` - Calculator class declaration
+- `Calculator.cpp` - Calculator class implementation
+- `main.cpp` - Interactive console program
+
+Build (requires g++ and C++17):
+
+```powershell
+g++ -std=c++17 -Wall -Wextra -O2 main.cpp Calculator.cpp -o calculator.exe
+```
+
+Run:
+
+```powershell
+.\calculator.exe
+```
+
+Usage:
+- Enter a number, an operator (+, -, *, /), and a second number. Type `q` at any prompt to quit.
+
