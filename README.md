@@ -22,6 +22,23 @@
 
 - **Bank Management System**: Simulate basic banking operations.
 
+- **Chess Game with AI**: Play chess against an AI using algorithmic evaluation for moves.
+
+- **Tinder-Like App**: Create profiles, swipe, and match users with persistent storage and algorithmic matching.
+
+- **Time Table Generator**: Generate optimized timetables using a Genetic Algorithm, handling all edge cases.
+
+- **Graph Analyzer**: Analyze graphs to detect cycles, compute shortest paths, connectivity, diameter, radius, and other metrics.
+
+- **3D Maze Generator & Solver**: Generate 3D mazes and find the shortest solution path using algorithmic approaches.
+
+- **Mini Database Engine**: Perform CRUD operations on multiple tables, query data, and persist it with file handling.
+
+- **Operating System Process Simulator**: Simulate process scheduling, CPU allocation, and resource management.
+
+- **Semester Grade Calculator**: Calculate grades, GPA, and provide detailed semester summaries based on marks and credits.
+
+
 ---
 
 ## 🧱 Tech Stack
