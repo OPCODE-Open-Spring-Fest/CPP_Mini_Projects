@@ -1,93 +1,105 @@
 #include <iostream>
 #include <vector>
+
+
 #include <string>
+#include <limits>
 using namespace std;
 
-// Class representing a single Task
+
 class Task {
 private:
     string title;
-    bool isCompleted;
+             bool isCompleted;
 
 public:
-    // Constructor
-    Task(string t) {
-        title = t;
-        isCompleted = false;
-    }
 
-    // Mark task as completed
+    Task(string t) : title(t), isCompleted(false) {}
+
     void markCompleted() {
         isCompleted = true;
     }
 
-    // Get task title
     string getTitle() const {
         return title;
     }
 
-    // Check completion status
-    bool getStatus() const {
+             bool getStatus() const {
         return isCompleted;
     }
 };
 
-// Class representing the To-Do List
-class ToDoList {
+         class ToDoList {
 private:
     vector<Task> tasks;
 
 public:
-    // Add a new task
+    
     void addTask(const string& title) {
+        if (title.empty()) {
+            cout << "❌ Task title cannot be empty!\n";
+            return;
+        }
         tasks.push_back(Task(title));
-        cout << "Task added successfully!\n";
+        cout <<        "  ✅ Task added successfully!\n";
     }
 
-    // Display all tasks
     void showTasks() const {
         if (tasks.empty()) {
-            cout << "No tasks available!\n";
+            cout << "📭 No tasks available!\n";
             return;
         }
 
         cout << "\n------ To-Do List ------\n";
         for (size_t i = 0; i < tasks.size(); ++i) {
             cout << i + 1 << ". " << tasks[i].getTitle()
-                 << " [" << (tasks[i].getStatus() ? "Done" : "Pending") << "]\n";
+                 << " [" << (tasks[i].getStatus() ? "✅ Done" : "🕓 Pending") << "]\n";
         }
         cout << "------------------------\n";
     }
 
-    // Mark a task as completed
     void markTaskCompleted(int index) {
         if (index < 1 || index > (int)tasks.size()) {
-            cout << "Invalid task number!\n";
+            cout << "⚠️ Invalid task number!\n";
             return;
         }
         tasks[index - 1].markCompleted();
-        cout << "Task marked as completed!\n";
+        cout << "✅ Task marked as completed!\n";
     }
 
-    // Delete a task
     void deleteTask(int index) {
         if (index < 1 || index > (int)tasks.size()) {
-            cout << "Invalid task number!\n";
+            cout << "⚠️ Invalid task number!\n";
             return;
         }
         tasks.erase(tasks.begin() + index - 1);
-        cout << "Task deleted successfully!\n";
+        cout << "🗑️ Task deleted successfully!\n";
     }
 };
 
-// Main program
+int getValidInt(const string& prompt) {
+    int value;
+    while (true) {
+        cout << prompt;
+        cin >> value;
+        if (cin.fail()) {
+            cout << "❌ Invalid input! Please enter a number.\n";
+                     cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    return value;
+        }
+    }
+}
+
 int main() {
     ToDoList todo;
     int choice;
     string title;
     int index;
 
-    cout << "\n===== TO-DO LIST APPLICATION =====\n";
+    cout << "\n===== 📝 TO-DO LIST APPLICATION =====\n";
     cout << "Manage your daily tasks efficiently.\n";
 
     do {
@@ -97,9 +109,7 @@ int main() {
         cout << "3. Mark Task as Completed\n";
         cout << "4. Delete Task\n";
         cout << "5. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
-        cin.ignore(); // To handle newline
+        choice = getValidInt("Enter your choice: ");
 
         switch (choice) {
         case 1:
@@ -113,27 +123,23 @@ int main() {
             break;
 
         case 3:
-            cout << "Enter task number to mark completed: ";
-            cin >> index;
+            index = getValidInt("Enter task number to mark completed: ");
             todo.markTaskCompleted(index);
             break;
 
         case 4:
-            cout << "Enter task number to delete: ";
-            cin >> index;
+            index = getValidInt("Enter task number to delete: ");
             todo.deleteTask(index);
             break;
 
         case 5:
-            cout << "Exiting program. Goodbye!\n";
+            cout << "👋 Exiting program. Goodbye!\n";
             break;
 
         default:
-            cout << "Invalid choice. Try again!\n";
+            cout << "⚠️ Invalid choice. Try again!\n";
         }
     } while (choice != 5);
 
     return 0;
 }
-
-
