@@ -8,7 +8,7 @@ struct Course {
     string name;
     string instructor;
     int sessionsPerWeek;
-    vector<int> allowedSlots; // Optional preferred slots (0-based index)
+    vector<int> allowedSlots; // optional preferred slots (0-based)
 };
 
 struct Room {
@@ -27,7 +27,7 @@ class Timetable {
 public:
     int numDays;
     int slotsPerDay;
-    vector<string> slotLabels; // Custom time labels
+    vector<string> slotLabels;
     vector<Room> rooms;
     vector<Course> courses;
     vector<Session> sessions;
