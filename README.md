@@ -38,7 +38,7 @@
 
 - **Semester Grade Calculator**: Calculate grades, GPA, and provide detailed semester summaries based on marks and credits.
 
-
+- **Expense Tracker**: Tracks your expenses where one can add, delete and view transactions .
 ---
 
 ## 🧱 Tech Stack
