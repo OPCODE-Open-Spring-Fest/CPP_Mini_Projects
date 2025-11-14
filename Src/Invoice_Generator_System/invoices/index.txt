@@ -1,0 +1,5 @@
+1001|Test Customer|invoices/invoice_1001.txt
+1002|Rohan Sharma|invoices/invoice_1002.txt
+1003|Priya Verma|invoices/invoice_1003.txt
+1004|Aditya Gupta|invoices/invoice_1004.txt
+1005|Rakshesh Singh Rajput|invoices/invoice_1005.txt
